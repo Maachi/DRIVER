@@ -264,6 +264,37 @@
                     });
                 }
             });
+
+            L.Control.LatLngInput = L.Control.extend({
+                onAdd: function() {
+                    var latlngDiv = L.DomUtil.create('div');
+                    var latlngInput = L.DomUtil.create('input', 'latlng-input', latlngDiv);
+                    var latlngButton = L.DomUtil.create('button', 'latlng-button', latlngDiv);
+                    L.DomUtil.create('span', 'glyphicon glyphicon-search', latlngButton);
+
+                    latlngInput.id = 'latlng-input';
+                    latlngInput.placeholder = 'Zoom to';
+                    latlngInput.type = 'text';
+
+                    L.DomEvent.addListener(latlngButton, 'click', function() {
+                        var latlngInput = document.getElementById('latlng-input').value;
+                        var latlng = latlngInput.split(',');
+                        if (latlng.length !== 2 || isNaN(latlng[0]) || isNaN(latlng[1])) {
+                            return;
+                        }
+                        ctl.map.setZoom(16);
+                        ctl.map.panTo(new L.LatLng(parseFloat(latlng[0]), parseFloat(latlng[1])));
+                    });
+
+                    return latlngDiv;
+                }
+            });
+
+            L.control.latlngInput = function(opts) {
+                return new L.Control.LatLngInput(opts);
+            };
+
+            L.control.latlngInput({ position: 'topleft' }).addTo(ctl.map);
         };
 
         // Clears editLayers and informs the map state service
