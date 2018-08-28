@@ -18,18 +18,16 @@
         <div class="ng-binding pull-right form-inline">
             <div class="input-group input-daterange">
                 <input name="minimum"
-                       id="dtMinField"
                        ng-model="min"
                        ng-change="onDtRangeChange('min')"
                        type="text"
-                       class="form-control date-range-style date-range-input">
+                       class="dtMinField form-control date-range-style date-range-input">
                 <span class="input-group-addon">{{ 'COMMON.TO' | translate }}</span>
                 <input name="maximum"
-                       id="dtMaxField"
                        ng-model="max"
                        ng-change="onDtRangeChange('max')"
                        type="text"
-                       class="form-control date-range-style date-range-input">
+                       class="dtMaxField form-control date-range-style date-range-input">
             </div>
         </div>
     </li>
