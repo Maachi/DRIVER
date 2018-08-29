@@ -9,7 +9,7 @@
             templateUrl: 'scripts/filterbar/date-range.html',
             controller: 'dateRangeController',
             scope: {
-                filterLabel: '=type'
+                filterLabel: '='
             },
             link: function(scope, elem, attrs, ctlArray) {
                 var calendar = null;
@@ -29,7 +29,7 @@
                  * we can display it to the user.
                  */
                 scope.$on('driver.filterbar:restored', function(event, filter) {
-                    if (filter.label === scope.filterLabel) {
+                    if (filter.label === attrs.filterLabel) {
                         // The restored date will be an ISO-8601 string, so we need to convert
                         // that to a Javascript Date, and then convert that to a localized CDate,
                         // and then store the formatted string.
@@ -143,7 +143,7 @@
                  */
                 scope.updateFilter = function() {
                     if (scope.isMinMaxValid()) {
-                        filterBarCtl.updateFilter(scope.filterLabel, dtRange);
+                        filterBarCtl.updateFilter(attrs.filterLabel, dtRange);
                     }
                 };
 
