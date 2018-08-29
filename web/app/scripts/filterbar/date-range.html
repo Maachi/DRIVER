@@ -10,7 +10,7 @@
 <ul class="dropdown-menu alert date-range"
     ng-class="error.classes"
     role="menu"
-    aria-labelledby="record-type"
+    aria-labelledby="record-type"f
     ng-click="$event.stopPropagation()">
     <li class="nav-rt-item ng-scope" role="menuitem">
         <span ng-show="isMinMaxValid()">{{ 'RECORD.DATE_FILTER' | translate }}</span>
@@ -21,13 +21,13 @@
                        ng-model="min"
                        ng-change="onDtRangeChange('min')"
                        type="text"
-                       class="dtMinField form-control date-range-style date-range-input">
+                       class="dt-min-field form-control date-range-style date-range-input">
                 <span class="input-group-addon">{{ 'COMMON.TO' | translate }}</span>
                 <input name="maximum"
                        ng-model="max"
                        ng-change="onDtRangeChange('max')"
                        type="text"
-                       class="dtMaxField form-control date-range-style date-range-input">
+                       class="dt-max-field form-control date-range-style date-range-input">
             </div>
         </div>
     </li>
