@@ -18,6 +18,11 @@
                 var dtRange = {};  // internal min/max date strings, used for API
                 // scope.min and scope.max are localized strings for display
 
+                if(attrs.filterLabel === '__createdRange') {
+                    scope.userLabel = 'RECORD.CREATED_FILTER';
+                } else {
+                    scope.userLabel = 'RECORD.DATE_FILTER';
+                }
 
                 scope.$on('driver.filterbar:reset', function() {
                     init();
