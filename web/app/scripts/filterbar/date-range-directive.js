@@ -4,13 +4,10 @@
     /* ngInject */
     function DateRangeField(DateLocalization) {
         var module = {
-            restrict: 'EA',
+            restrict: 'A',
             require: ['^driver-filterbar', 'date-range-field'],
             templateUrl: 'scripts/filterbar/date-range.html',
             controller: 'dateRangeController',
-            scope: {
-                filterLabel: '='
-            },
             link: function(scope, elem, attrs, ctlArray) {
                 var calendar = null;
                 var filterBarCtl = ctlArray[0];
@@ -18,7 +15,7 @@
                 var dtRange = {};  // internal min/max date strings, used for API
                 // scope.min and scope.max are localized strings for display
 
-                if(attrs.filterLabel === '__createdRange') {
+                if(attrs.dateRangeField === '__createdRange') {
                     scope.userLabel = 'RECORD.CREATED_FILTER';
                 } else {
                     scope.userLabel = 'RECORD.DATE_FILTER';
@@ -34,7 +31,7 @@
                  * we can display it to the user.
                  */
                 scope.$on('driver.filterbar:restored', function(event, filter) {
-                    if (filter.label === attrs.filterLabel) {
+                    if (filter.label === attrs.dateRangeField) {
                         // The restored date will be an ISO-8601 string, so we need to convert
                         // that to a Javascript Date, and then convert that to a localized CDate,
                         // and then store the formatted string.
@@ -148,7 +145,7 @@
                  */
                 scope.updateFilter = function() {
                     if (scope.isMinMaxValid()) {
-                        filterBarCtl.updateFilter(attrs.filterLabel, dtRange);
+                        filterBarCtl.updateFilter(attrs.dateRangeField, dtRange);
                     }
                 };
 
